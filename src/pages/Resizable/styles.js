@@ -39,8 +39,18 @@ export const Col = styled.div`
   padding: 10px;
   ${(props) => props.collapse && media[props.collapse]};
   background-color: #333333;
-  transition-delay: 1s;
+  transition-delay: 4s;
   transition: all 01s;
+  justify-content: center;
+  align-items: center;
 `;
 
-export const Frame = styled.iframe``;
+export const ItemList = styled.ul`
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Option = styled.li`
+  align-items: center;
+  justify-content: center;
+`;

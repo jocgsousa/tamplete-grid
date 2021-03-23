@@ -24,7 +24,9 @@ export default class Main extends Component {
     return (
       <>
         <Grid>
-          <Link to="/profile">{'Segundo exemplo >'}</Link>
+          <Link to="/resizable" style={{ color: '#FFF' }}>
+            {'Segundo exemplo >'}
+          </Link>
           <Row>
             <Col size={1}>Longa coluna</Col>
           </Row>
