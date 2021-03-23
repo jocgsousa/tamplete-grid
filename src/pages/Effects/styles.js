@@ -23,6 +23,7 @@ export const Item = styled.div`
   box-shadow: 2px 2px 5px 1px #666;
   background-color: #3399ff;
   color: #fff;
+  word-wrap: break-word;
 `;
 
 // Container for content items
@@ -55,4 +56,11 @@ export const Form = styled.form`
   align-items: center;
   margin-bottom: 10px;
   justify-content: center;
+`;
+
+export const ScrollTodos = styled.div`
+  overflow: auto;
+  width: 60%;
+  padding: 10px;
+  bottom: 0;
 `;

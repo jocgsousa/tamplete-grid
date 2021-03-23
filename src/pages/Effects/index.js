@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
 import { uniqueId } from 'lodash';
-import { Container, FadeIn, Item, InputText, Form } from './styles';
+import {
+  Container,
+  FadeIn,
+  Item,
+  InputText,
+  Form,
+  ScrollTodos,
+} from './styles';
 
 export default class Effects extends Component {
   state = {
@@ -15,15 +22,13 @@ export default class Effects extends Component {
 
   handleAdd = () => {
     const { text, todos } = this.state;
-    const data = [
-      ...todos,
-      {
-        id: uniqueId(),
-        text,
-      },
-    ];
+    const data = {
+      id: uniqueId(),
+      text,
+    };
+
     this.setState({
-      todos: data,
+      todos: [...todos, data],
     });
 
     console.log(todos);
@@ -40,11 +45,13 @@ export default class Effects extends Component {
           </Button>
         </Form>
         <Container>
-          {todos.map((item) => (
-            <FadeIn duration="0.5s" delay="0.5s">
-              <Item>{item.text}</Item>
-            </FadeIn>
-          ))}
+          <ScrollTodos>
+            {todos.map((item) => (
+              <FadeIn key={item.id} duration="0.3s" delay="0.2s">
+                <Item>{item.text}</Item>
+              </FadeIn>
+            ))}
+          </ScrollTodos>
         </Container>
       </>
     );
