@@ -1,47 +1,92 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { darken } from 'polished';
+import { Button } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 
-// Container para conter todos os conteudos
-export const Grid = styled.div``;
+import BaseAnimation from '../../styles/animation';
 
-// Row estilizado para posicionar os conteudos de acordo com o tamanho da tela atual
-export const Row = styled.div`
-  display: flex;
-  max-width: 1000px;
-  @media (max-width: 400px) {
-    flex-direction: column;
-  }
-  margin-left: 10px;
-  margin-right: 10px;
+// Animations
+const animations = {
+  fadein: () => keyframes`
+  from {opacity: 0;}
+  to {opacity: 1;}
+`,
+};
+
+// Containers
+export const Grid = styled(BaseAnimation)`
+  animation-name: ${(props) => props.animation && animations[props.animation]};
+  max-width: 100%;
 `;
 
-// Efeito que sera de acordo se o componente tiver a prop collapse como xs
+// Opções de estilização
 const media = {
-  xs: () => `
-    @media only screen and (max-width: 400px){
-        
-        display: none;
-      
+  grid: () => `
+    @media (max-width: 450px){
+      flex-direction: column;
     }
   `,
-
-  big: () => `
-    @media only screen and (max-width: 400px){
-        transition: all 0.1s;
-        height: 50px;
+  painel: () => `
+    height: 100vh;
+    @media(min-width: 450px){
+     
+      left: 0px;
     }
+  `,
+  painel_left: () => `
+    height: 100vh;
+    @media(min-width: 450px){
+      h1{
+        margin-left: 24%;
+      }
+    }
+  `,
+  content: () => `
+    top: 0px;
+    @media(min-width: 400px){
+      margin-top: -598px;
+    }
+    
   `,
 };
 
-// Container de coluna que recebe a prop size para delimitar o tamanho que irá ocupar
-export const Col = styled.div`
-  flex: ${(props) => props.size};
-  margin: 2px;
-  background: #fff;
-  border: 2px solid palevioletred;
-  padding: 10px;
-  ${(props) => props.collapse && media[props.collapse]};
-  border-radius: 4px;
-  transition: all 0.1s;
+export const Row = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${(props) => props.display && media[props.display]}
 `;
 
-export const Frame = styled.iframe``;
+export const Col = styled(BaseAnimation)`
+  flex: ${(props) => props.size && props.size};
+  padding: 10px;
+  width: 100%;
+  /* background-color: #2a2a61; */
+  background-color: #15153d;
+  border: 1px solid #663399;
+  color: #fff;
+  animation-name: ${(props) => props.animation && animations[props.animation]};
+  ${(props) => props.painel && media.painel}
+  ${(props) => props.painel_left && media.painel_left}
+`;
+
+export const MenuOption = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+// Custom css for Material UI
+const MaterialButton = withStyles((theme) => ({
+  root: {
+    color: theme.palette.getContrastText('#7159c1'),
+    backgroundColor: '#7159c1',
+    '&:hover': {
+      backgroundColor: darken(0.05, '#7159c1'),
+    },
+  },
+}))(Button);
+export const ButtonOption = styled(MaterialButton)`
+  margin-left: 24%;
+`;

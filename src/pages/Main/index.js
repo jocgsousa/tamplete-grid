@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
-import ResizePanel from 'react-resize-panel';
-//
+// import { Link } from 'react-router-dom';
 
-import { Grid, Row, Col } from './styles';
+// import ResizePanel from 'react-resize-panel';
+// //
+
+import { Grid, Row, Col, MenuOption, ButtonOption } from './styles';
 
 export default class Main extends Component {
   state = {
@@ -24,34 +25,23 @@ export default class Main extends Component {
     return (
       <>
         <Grid>
-          <Link to="/resizable" style={{ color: '#FFF' }}>
-            {'Segundo exemplo >'}
-          </Link>
-          <Row>
-            <Col size={1}>Longa coluna</Col>
-          </Row>
-          <Row>
-            <Col size={1}>Coluna 1</Col>
-            <Col size={1} collapse="xs">
-              Coluna 2 podera desaparecer se tiver a prop collapse
-            </Col>
-            <Col size={1} collapse="big">
-              Coluna 3
-            </Col>
-          </Row>
-
-          <Row>
-            <ResizePanel
-              direction="e"
-              handleClass="customHandle"
-              style={{ flex: '1' }}
+          <Row display="grid">
+            <Col
+              painel_left
+              animation="fadein"
+              duration="0.2s"
+              delay="1s"
+              size={1}
             >
-              <Col size={1} style={{ minWidth: '20%' }}>
-                Conteúdo 1
-              </Col>
-            </ResizePanel>
-            <Col size={1} style={{ minWidth: '20%' }}>
-              Conteúdo 2
+              <h1>SIAS</h1>
+              <MenuOption>
+                <li>
+                  <ButtonOption>Opção 1</ButtonOption>
+                </li>
+              </MenuOption>
+            </Col>
+            <Col painel animation="fadein" duration="0.2s" delay="1s" size={8}>
+              Segundo item
             </Col>
           </Row>
         </Grid>
